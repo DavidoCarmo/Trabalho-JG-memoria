@@ -1,0 +1,107 @@
+#fundo {
+    background-size: cover;
+    /* Faz com que a imagem cubra todo o fundo */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+.game-container {
+    width: 800px;
+    height: 800px;
+    text-align: center;
+    background-color: #ffffff;
+    border-width: 10px;
+    border-style: solid;
+    border-color: rgb(34, 77, 17);
+    padding-top: 10px;    /* Espaço superior */
+    padding-right: 55px;  /* Espaço direito */
+    padding-bottom: 10px; /* Espaço inferior */
+    padding-left: 0px;   /* Espaço esquerdo */
+}
+
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 110px);
+    grid-template-rows: repeat(4, 110px);
+    gap: 60px;
+    justify-content: center;
+}
+
+.memory-card {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    perspective: 1000px;
+    /* Permite a rotação 3D */
+}
+
+.memory-card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flip .memory-card-inner {
+    transform: rotateY(180deg);
+    /* Efeito de giro */
+}
+
+.memory-card-front,
+.memory-card-back {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Oculta o verso quando girada */
+    border-radius: 10px;
+}
+
+.memory-card-front {
+    background-color: #2e8b57;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-card-back {
+    background-color: #fff;
+    transform: rotateY(180deg);
+    /* O verso da carta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-card img {
+    width: 155px;
+    height: 145px;
+    border-radius: 10px;
+}
+
+#timer {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+body {
+    background-image: url('assets/fotocavalo.jpg');
+    background-size: cover;
+    /* Faz a imagem cobrir toda a tela */
+    background-position: center;
+    /* Centraliza a imagem */
+    background-repeat: no-repeat;
+    /* Evita que a imagem se repita */
+}
