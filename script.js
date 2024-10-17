@@ -1,3 +1,6 @@
+// todo o artigo foi traduzido e explicado para melhor entendimento
+
+
 // Array contendo os dados de cada carta (nome e imagem)
 const cardsArray = [
     { name: 'goofy01', img: 'assets/foto1.jpg' },
@@ -22,8 +25,12 @@ let timer; // Armazena o cronômetro
 let timeStart = false; // Para verificar se o cronômetro já foi iniciado
 let totalTime = 0; // Total de tempo gasto no jogo
 
+
+
 // Embaralhar as cartas aleatoriamente (usando sort com comparação randômica)
 cards = cards.sort(() => 0.5 - Math.random());
+
+
 
 // Criar o tabuleiro de jogo (adicionando as cartas ao HTML)
 const gameBoard = document.getElementById('game-board');
@@ -32,6 +39,7 @@ cards.forEach(card => {
     const cardElement = document.createElement('div');
     cardElement.classList.add('memory-card');
     cardElement.setAttribute('data-name', card.name); // Definindo o nome da carta para comparação futura
+
 
     // Definição da estrutura da carta (frente e verso)
     cardElement.innerHTML = `
@@ -43,23 +51,31 @@ cards.forEach(card => {
         </div>
     `;
     
+
     // Adicionar a carta criada ao tabuleiro
     gameBoard.appendChild(cardElement);
 });
 
+
 // Função responsável por virar a carta
 function flipCard() {
+
+
     // Se o tabuleiro estiver bloqueado ou a mesma carta for clicada novamente, não faz nada
     if (lockBoard) return;
     if (this === firstCard) return;
 
+
     // Adiciona a classe 'flip' para girar a carta
     this.classList.add('flip');
+
 
     // Se ainda não há carta virada, armazena a primeira carta virada
     if (!hasFlippedCard) {
         hasFlippedCard = true;
         firstCard = this;
+
+
 
         // Iniciar o cronômetro ao virar a primeira carta
         if (!timeStart) {
@@ -69,13 +85,18 @@ function flipCard() {
         return;
     }
 
+
     // Se há uma carta virada, armazena a segunda e verifica se são iguais
     secondCard = this;
     checkForMatch();
 }
 
+
+
 // Função para verificar se as duas cartas viradas são iguais
 function checkForMatch() {
+
+
     // Verifica se o nome das duas cartas é igual
     let isMatch = firstCard.dataset.name === secondCard.dataset.name;
 
@@ -85,9 +106,11 @@ function checkForMatch() {
 
 // Função que desabilita o clique nas cartas correspondentes (pares encontrados)
 function disableCards() {
+
     // Remove o evento de clique nas cartas que foram correspondidas
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+
 
     // Incrementa o número de cartas correspondentes
     matchedCards += 2;
@@ -104,11 +127,14 @@ function disableCards() {
 
 // Função para desvirar as cartas se não forem correspondentes
 function unflipCards() {
+
+
     // Bloqueia o tabuleiro enquanto as cartas são desviradas
     lockBoard = true;
 
     // Espera 1 segundo para que as cartas sejam desviradas
     setTimeout(() => {
+
         firstCard.classList.remove('flip'); // Remove o efeito de giro da primeira carta
         secondCard.classList.remove('flip'); // Remove o efeito de giro da segunda carta
         resetBoard(); // Reseta o estado das variáveis
@@ -124,6 +150,7 @@ function resetBoard() {
 
 // Função para iniciar o cronômetro ao virar a primeira carta
 function startTimer() {
+    
     // Inicia um cronômetro que incrementa a cada segundo
     timer = setInterval(() => {
         totalTime++;
